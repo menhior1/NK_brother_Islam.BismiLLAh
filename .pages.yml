@@ -1,131 +1,381 @@
-# Pages CMS reads this file at repository root: https://pagescms.org
+# Pages CMS product and page editor. All published content is localized.
 media:
   input: public/images/uploads
   output: /images/uploads
   rename: safe
-  categories: [image]
-
+  categories:
+  - image
 content:
-  - name: products
-    label: Products
-    type: collection
-    path: src/data/products
-    format: json
-    filename: "{primary}.json"
-    view:
-      primary: title
-      fields: [title, category, published, featured, order]
-      sort: [order, title]
-      search: [title, category]
-      default:
-        sort: order
-        order: asc
+- name: products
+  label: Products — KA / RU / EN
+  type: collection
+  path: src/data/products
+  format: json
+  filename: '{fields.slug}.json'
+  view:
+    primary: title.ka
     fields:
-      - name: title
-        label: Product name
-        type: string
-        required: true
-      - name: category
-        label: Shape / category
-        type: select
-        options:
-          values: [Round, Oval, Rectangular, Custom, Other]
-        required: true
-      - name: description
-        label: Description
-        type: text
-      - name: material
-        label: Material
-        type: string
-      - name: finish
-        label: Finish
-        type: string
-      - name: dimensions
-        label: Dimensions (optional)
-        type: string
-      - name: coverImage
-        label: Cover photograph
-        type: image
-        required: true
-      - name: gallery
-        label: Additional photographs
-        type: image
-        options:
-          multiple:
-            max: 10
-          unique: true
-      - name: alt
-        label: Photograph description for accessibility
-        type: string
-      - name: featured
-        label: Feature on homepage
-        type: boolean
-      - name: published
-        label: Publicly visible
-        type: boolean
-        description: "Turn off to hide this product from the published website."
-      - name: order
-        label: Sort order (lower shows first)
-        type: number
-
-  - name: site
-    label: Homepage and studio
-    type: file
-    path: src/data/site.json
-    format: json
+    - title.ka
+    - category
+    - published
+    - featured
+    - order
+    sort:
+    - order
+    - title.ka
+    search:
+    - title.ka
+    - title.ru
+    - title.en
+    - category
+    default:
+      sort: order
+      order: asc
+  fields:
+  - name: slug
+    label: URL slug (Latin letters, hyphens)
+    type: string
+    required: true
+    pattern: ^[a-z0-9]+(?:-[a-z0-9]+)*$
+    description: 'Keep this stable once published. Example: round-concrete-basin'
+  - name: title
+    label: Product name in 3 languages
+    type: object
     fields:
-      - name: brand
-        label: Studio name
-        type: string
-        required: true
-      - name: strapline
-        label: Small tagline
-        type: string
-      - name: heroTitle
-        label: Homepage headline
-        type: string
-      - name: heroSubtitle
-        label: Homepage introduction
-        type: text
-      - name: heroImage
-        label: Homepage photograph
-        type: image
-      - name: introEyebrow
-        label: Studio section label
-        type: string
-      - name: introTitle
-        label: Studio introduction headline
-        type: string
-      - name: introDescription
-        label: Studio introduction text
-        type: text
-      - name: worksEyebrow
-        label: Collection section label
-        type: string
-      - name: worksTitle
-        label: Collection headline
-        type: string
-      - name: aboutEyebrow
-        label: About section label
-        type: string
-      - name: aboutTitle
-        label: About headline
-        type: string
-      - name: aboutDescription
-        label: About text
-        type: text
-      - name: aboutImage
-        label: About photograph
-        type: image
-      - name: contactTitle
-        label: Contact headline
-        type: string
-      - name: contactDescription
-        label: Contact introduction
-        type: text
-      - name: instagramUrl
-        label: Instagram URL (optional)
-        type: string
-      - name: contactEmail
-        label: Public email (optional)
-        type: string
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: category
+    label: Shape / category
+    type: select
+    options:
+      values:
+      - Round
+      - Oval
+      - Rectangular
+      - Custom
+      - Other
+    required: true
+  - name: description
+    label: Description in 3 languages
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: text
+    - name: ru
+      label: Russian / Русский
+      type: text
+    - name: en
+      label: English
+      type: text
+  - name: material
+    label: Material in 3 languages
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+    - name: ru
+      label: Russian / Русский
+      type: string
+    - name: en
+      label: English
+      type: string
+  - name: finish
+    label: Finish in 3 languages
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+    - name: ru
+      label: Russian / Русский
+      type: string
+    - name: en
+      label: English
+      type: string
+  - name: dimensions
+    label: Dimensions (optional, by language)
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+    - name: ru
+      label: Russian / Русский
+      type: string
+    - name: en
+      label: English
+      type: string
+  - name: coverImage
+    label: Cover photograph
+    type: image
+    required: true
+  - name: gallery
+    label: Additional photographs
+    type: image
+    list:
+      max: 10
+  - name: alt
+    label: Photo accessibility description
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+    - name: ru
+      label: Russian / Русский
+      type: string
+    - name: en
+      label: English
+      type: string
+  - name: featured
+    label: Featured on homepage
+    type: boolean
+  - name: published
+    label: Publish on all language versions
+    type: boolean
+    description: Only enable when the Georgian, Russian, and English product names and descriptions are ready.
+  - name: order
+    label: Sort order (lower shows first)
+    type: number
+- name: site
+  label: Homepage & studio — KA / RU / EN
+  type: file
+  path: src/data/site.json
+  format: json
+  fields:
+  - name: brand
+    label: Studio name
+    type: string
+    required: true
+  - name: strapline
+    label: Small tagline
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: heroTitle
+    label: Homepage headline
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: heroSubtitle
+    label: Homepage subtitle
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: text
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: text
+      required: true
+    - name: en
+      label: English
+      type: text
+      required: true
+  - name: introEyebrow
+    label: Introduction label
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: introTitle
+    label: Introduction heading
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: introDescription
+    label: Introduction paragraph
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: text
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: text
+      required: true
+    - name: en
+      label: English
+      type: text
+      required: true
+  - name: worksEyebrow
+    label: Collection section label
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: worksTitle
+    label: Collection headline
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: aboutEyebrow
+    label: Studio section label
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: aboutTitle
+    label: About heading
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: aboutDescription
+    label: About paragraph
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: text
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: text
+      required: true
+    - name: en
+      label: English
+      type: text
+      required: true
+  - name: contactTitle
+    label: Contact heading
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: string
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: string
+      required: true
+    - name: en
+      label: English
+      type: string
+      required: true
+  - name: contactDescription
+    label: Contact paragraph
+    type: object
+    fields:
+    - name: ka
+      label: Georgian / ქართული
+      type: text
+      required: true
+    - name: ru
+      label: Russian / Русский
+      type: text
+      required: true
+    - name: en
+      label: English
+      type: text
+      required: true
+  - name: heroImage
+    label: Hero image
+    type: image
+  - name: aboutImage
+    label: About image
+    type: image
+  - name: instagramUrl
+    label: Instagram URL (optional)
+    type: string
+  - name: contactEmail
+    label: Public contact email (optional)
+    type: string

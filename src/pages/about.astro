@@ -1,9 +1,4 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ResponsiveImage from '../components/ResponsiveImage.astro';
-import site from '../data/site.json';
+import AboutPage from '../components/pages/AboutPage.astro';
 ---
-<Layout title="The studio" description="The craft and perspective behind Nicolas Khobelia's concrete objects.">
-  <section class="about-page-section"><div class="container about-page-grid"><div class="about-page-text"><p class="eyebrow eyebrow--dark">{site.aboutEyebrow} / THE STUDIO</p><h1 class="display-title">{site.aboutTitle}</h1><p class="lead">{site.aboutDescription}</p><p>From rounded silhouettes to subtle surface textures, the work explores how a practical object can become a distinctive part of an interior.</p><a class="text-link" href="/contact/">Start a conversation <span aria-hidden="true">↗</span></a></div><div class="about-page-media"><ResponsiveImage src={site.aboutImage} alt="An oval concrete basin in an architectural bathroom" sizes="(max-width: 800px) 100vw, 50vw" loading="eager" /></div></div></section>
-  <section class="about-statement"><div class="container"><p class="eyebrow eyebrow--dark">A SIMPLE IDEA</p><h2 class="display-title">Texture, proportion,<br /><em>and a sense of place.</em></h2></div></section>
-</Layout>
+<AboutPage lang="ka" />

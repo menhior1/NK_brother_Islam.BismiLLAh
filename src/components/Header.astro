@@ -1,36 +1,39 @@
 ---
 import site from '../data/site.json';
-const { overlay = false } = Astro.props;
-const path = Astro.url.pathname;
-const isActive = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
+import { languages, localeNames, localizedPath, route, t, type Language } from '../lib/i18n';
+const { overlay = false, lang } = Astro.props as {overlay?:boolean;lang:Language};
+const words=t(lang);
+const path=Astro.url.pathname;
+const isActive=(href:string)=>href===route(lang,'/')?path===href:path.startsWith(href);
 ---
-<header class:list={['site-header', { 'site-header--overlay': overlay }]}>
-  <a class="brand" href="/" aria-label={`${site.brand} — home`}>
+<header class:list={['site-header', {'site-header--overlay': overlay}]}>
+  <a class="brand" href={route(lang,'/')} aria-label={`${site.brand} — ${words.homeLabel}`}>
     <span class="brand-mark" aria-hidden="true">NK</span><span class="brand-name">NICOLAS<br />KHOBELIA</span>
   </a>
-  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
-    <span></span><span></span>
-  </button>
-  <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
-    <a href="/" aria-current={isActive('/') ? 'page' : undefined}>Home</a>
-    <a href="/works/" aria-current={isActive('/works/') ? 'page' : undefined}>Collection</a>
-    <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}>The studio</a>
-    <a href="/contact/" aria-current={isActive('/contact/') ? 'page' : undefined}>Contact</a>
+  <button class="menu-toggle" type="button" aria-label={words.menuOpen} data-open-label={words.menuOpen} data-close-label={words.menuClose} aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
+  <nav id="primary-nav" class="primary-nav" aria-label={words.navigation}>
+    <a href={route(lang,'/')} aria-current={isActive(route(lang,'/')) ? 'page' : undefined}>{words.home}</a>
+    <a href={route(lang,'/works/')} aria-current={isActive(route(lang,'/works/')) ? 'page' : undefined}>{words.collection}</a>
+    <a href={route(lang,'/about/')} aria-current={isActive(route(lang,'/about/')) ? 'page' : undefined}>{words.studio}</a>
+    <a href={route(lang,'/contact/')} aria-current={isActive(route(lang,'/contact/')) ? 'page' : undefined}>{words.contact}</a>
+    <div class="language-switcher" role="group" aria-label={words.languages}>
+      {languages.map(l => <a class="lang-link" lang={l} hreflang={l} href={localizedPath(path,l)} aria-label={localeNames[l]} aria-current={l===lang?'true':undefined} title={localeNames[l]}>{l.toUpperCase()}</a>)}
+    </div>
   </nav>
 </header>
 <script>
-  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
-  const header = document.querySelector<HTMLElement>('.site-header');
-  const nav = document.getElementById('primary-nav');
-  if (toggle && header && nav) {
-    const setOpen = (open: boolean) => {
-      header.classList.toggle('menu-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
-      document.body.classList.toggle('nav-open', open);
+  const toggle=document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const header=document.querySelector<HTMLElement>('.site-header');
+  const nav=document.getElementById('primary-nav');
+  if(toggle&&header&&nav){
+    const setOpen=(open:boolean)=>{
+      header.classList.toggle('menu-open',open);
+      toggle.setAttribute('aria-expanded',String(open));
+      toggle.setAttribute('aria-label',open?toggle.dataset.closeLabel||'Close navigation':toggle.dataset.openLabel||'Open navigation');
+      document.body.classList.toggle('nav-open',open);
     };
-    toggle.addEventListener('click', () => setOpen(!header.classList.contains('menu-open')));
-    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setOpen(false)));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+    toggle.addEventListener('click',()=>setOpen(!header.classList.contains('menu-open')));
+    nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setOpen(false)));
+    document.addEventListener('keydown',event=>{if(event.key==='Escape')setOpen(false);});
   }
 </script>

@@ -1,0 +1,46 @@
+export const languages = ['ka','ru','en'] as const;
+export type Language = (typeof languages)[number];
+export type Translated = Record<Language,string>;
+export const localeNames: Record<Language,string> = { ka: 'ქართული', ru: 'Русский', en: 'English' };
+export const localized = (item:Translated, lang: Language) => item[lang] || item.ka || item.en || '';
+export const route = (lang: Language, path: string) => (lang === 'ka' ? '' : `/${lang}`) + (path.startsWith('/') ? path : `/${path}`);
+export const localizedPath = (path:string, lang:Language) => route(lang,path.replace(/^\/(ru|en)(?=\/|$)/, '') || '/');
+export const alternateLangPath = (path:string) => path.replace(/^\/(ru|en)(?=\/|$)/, '') || '/';
+
+const ui = {
+ka: {
+ home:'მთავარი', collection:'კოლექცია', studio:'სახელოსნო', contact:'კონტაქტი', menuOpen:'მენიუს გახსნა', menuClose:'მენიუს დახურვა', navigation:'მთავარი ნავიგაცია', languages:'აირჩიეთ ენა', homeLabel:'მთავარი გვერდი', skip:'შინაარსზე გადასვლა',
+ exploreCollection:'კოლექციის ნახვა', scroll:'ჩამოსქროლეთ', allWorks:'ყველა ნამუშევარი', maker:'გაიცანით ავტორი', ctaEyebrow:'გაქვთ პროექტის იდეა?', ctaLead:'ლამაზი ნივთები', ctaEm:'საუბრით იწყება.', getInTouch:'დაგვიკავშირდით', soon:'ნაკეთობები მალე გამოჩნდება.', footerTag:'ნივთები ხასიათით.', footerBottom:'დახვეწილი სიმარტივე.',
+ collectionEyebrow:'კოლექცია / 001', collectionTitle:'კოლექცია', collectionIntro:'ფორმის, მასალისა და ფაქტურის ძიება. თითოეული ნივთი სივრცეს თავისებურ ხასიათს სძენს.', filterLabel:'კოლექციის გაფილტვრა ფორმის მიხედვით', all:'ყველა', objects:'ნაკეთობა', filterEmpty:'ამ კატეგორიაში ჯერ არაფერია.',
+ back:'კოლექციაში დაბრუნება', object:'ნაკეთობა', material:'მასალა', finish:'ზედაპირი', dimensions:'ზომები', inquire:'შეკითხვა ნივთის შესახებ', availability:'ხელმისაწვდომობისა და ინდივიდუალური შეკვეთებისთვის დაგვიკავშირდით.', discover:'აღმოაჩინეთ მეტი', viewAll:'ყველა ნივთის ნახვა', photo:'ფოტოს ნახვა', basin:'ხელსაბანი',
+ aboutIntro:'მრგვალი ფორმებიდან დახვეწილ ფაქტურებამდე — ნამუშევრები აჩვენებს, როგორ შეიძლება პრაქტიკული ნივთი ინტერიერის გამორჩეულ ნაწილად იქცეს.', aboutIdea:'მარტივი იდეა', aboutStatement:'ფაქტურა, პროპორცია', aboutStatementEm:'და სივრცის შეგრძნება.', startConversation:'დავიწყოთ საუბარი',
+ contactEyebrow:'დაუკავშირდით სახელოსნოს', emailTag:'ელფოსტა', socialTag:'სოციალური ქსელი', name:'თქვენი სახელი', namePlaceholder:'სახელი', email:'ელფოსტის მისამართი', subject:'თემა', productInquiry:'შეკითხვა ნივთის შესახებ', customProject:'ინდივიდუალური პროექტი', generalQuestion:'ზოგადი შეკითხვა', yourMessage:'თქვენი შეტყობინება', messagePlaceholder:'მოგვიყევით თქვენი პროექტის ან სასურველი ნივთის შესახებ…', send:'შეტყობინების გაგზავნა', privacy:'თქვენს ინფორმაციას მხოლოდ შეკითხვაზე საპასუხოდ გამოვიყენებთ.', regarding:'საუბარია ნივთზე', honeypot:'არ შეავსოთ ეს ველი',
+ thanksTag:'შეტყობინება მიღებულია', thanksTitle:'გმადლობთ, რომ მოგვწერეთ.', thanksBody:'თქვენი შეტყობინება მივიღეთ. სახელოსნო მითითებულ საკონტაქტო ინფორმაციაზე გიპასუხებთ.', returnHome:'მთავარ გვერდზე დაბრუნება', notFound:'გვერდი ვერ მოიძებნა', notFoundBody:'დაათვალიერეთ კოლექცია ან დაბრუნდით მთავარ გვერდზე.', viewCollection:'კოლექციის ნახვა',
+ pageCollectionDesc:'ნიკოლას ხობელიას ბეტონის ხელსაბანებისა და სკულპტურული ნაკეთობების კოლექცია.', pageAboutDesc:'ნიკოლას ხობელიას ნამუშევრები და მიდგომა ბეტონის ხელნაკეთი ნივთების შექმნისადმი.', pageContactDesc:'დაუკავშირდით ნიკოლას ხობელიას ბეტონის ნაკეთობებისა და ინდივიდუალური პროექტების შესახებ.', brandDescriptor:'ბეტონის ნაკეთობები და ხელსაბანები',
+ category: {Round:'მრგვალი',Oval:'ოვალური',Rectangular:'მართკუთხა',Custom:'ინდივიდუალური',Other:'სხვა'}
+},
+ru: {
+ home:'Главная',collection:'Коллекция',studio:'Мастерская',contact:'Контакты',menuOpen:'Открыть меню',menuClose:'Закрыть меню',navigation:'Основная навигация',languages:'Выбор языка',homeLabel:'главная',skip:'Перейти к содержимому',
+ exploreCollection:'Смотреть коллекцию',scroll:'ЛИСТАЙТЕ ВНИЗ',allWorks:'Все работы',maker:'Познакомиться с автором',ctaEyebrow:'ЕСТЬ ИДЕЯ ДЛЯ ПРОЕКТА?',ctaLead:'Красивые вещи',ctaEm:'начинаются с разговора.',getInTouch:'Связаться',soon:'Скоро здесь появятся изделия.',footerTag:'Вещи с характером.',footerBottom:'Ничего лишнего.',
+ collectionEyebrow:'КОЛЛЕКЦИЯ / 001',collectionTitle:'Коллекция',collectionIntro:'Исследование формы, материала и фактуры. Каждое изделие привносит в пространство свой характер.',filterLabel:'Фильтр по форме',all:'Все',objects:'ИЗДЕЛИЙ',filterEmpty:'В этой категории пока нет изделий.',
+ back:'Назад к коллекции',object:'ИЗДЕЛИЕ',material:'Материал',finish:'Отделка',dimensions:'Размеры',inquire:'Узнать об изделии',availability:'По вопросам наличия и индивидуальных заказов свяжитесь с мастерской.',discover:'БОЛЬШЕ РАБОТ',viewAll:'Посмотреть все изделия',photo:'Посмотреть фото',basin:'раковина',
+ aboutIntro:'От округлых силуэтов до тонких фактур поверхности — эти работы показывают, как практичный предмет становится выразительной частью интерьера.',aboutIdea:'ПРОСТАЯ ИДЕЯ',aboutStatement:'Фактура, пропорции',aboutStatementEm:'и чувство пространства.',startConversation:'Начать разговор',
+ contactEyebrow:'НАПИСАТЬ В МАСТЕРСКУЮ',emailTag:'ПОЧТА',socialTag:'СОЦСЕТИ',name:'ВАШЕ ИМЯ',namePlaceholder:'Имя',email:'ЭЛЕКТРОННАЯ ПОЧТА',subject:'ТЕМА',productInquiry:'Вопрос об изделии',customProject:'Индивидуальный проект',generalQuestion:'Общий вопрос',yourMessage:'СООБЩЕНИЕ',messagePlaceholder:'Расскажите о вашем проекте или изделии, которое вам понравилось…',send:'Отправить запрос',privacy:'Мы используем ваши данные только для ответа на запрос.',regarding:'По поводу изделия',honeypot:'Не заполняйте это поле',
+ thanksTag:'СООБЩЕНИЕ ПОЛУЧЕНО',thanksTitle:'Спасибо за ваше сообщение.',thanksBody:'Мы получили ваш запрос. Мастерская ответит по указанным контактным данным.',returnHome:'На главную',notFound:'Страница не найдена',notFoundBody:'Посмотрите коллекцию или вернитесь на главную.',viewCollection:'Посмотреть коллекцию',
+ pageCollectionDesc:'Коллекция бетонных раковин и скульптурных предметов Николаса Хобелии.',pageAboutDesc:'Мастерство и взгляд Николаса Хобелии на работу с бетоном.',pageContactDesc:'Свяжитесь с Николасом Хобелией по поводу изделий из бетона и индивидуальных проектов.',brandDescriptor:'Бетонные изделия и раковины',
+ category:{Round:'Круглая',Oval:'Овальная',Rectangular:'Прямоугольная',Custom:'На заказ',Other:'Другая'}
+},
+en: {
+ home:'Home',collection:'Collection',studio:'The studio',contact:'Contact',menuOpen:'Open navigation',menuClose:'Close navigation',navigation:'Main navigation',languages:'Choose language',homeLabel:'home',skip:'Skip to content',
+ exploreCollection:'Explore collection',scroll:'SCROLL TO EXPLORE',allWorks:'All works',maker:'Meet the maker',ctaEyebrow:'HAVE A PROJECT IN MIND?',ctaLead:'Beautiful objects',ctaEm:'begin with a conversation.',getInTouch:'Get in touch',soon:'Products will appear here soon.',footerTag:'Objects with character.',footerBottom:'Designed with restraint.',
+ collectionEyebrow:'THE COLLECTION / 001',collectionTitle:'The collection',collectionIntro:'A study in form, material and texture. Each piece brings its own quiet character into a space.',filterLabel:'Filter collection by shape',all:'All',objects:'OBJECTS',filterEmpty:'No objects in this category yet.',
+ back:'Back to collection',object:'OBJECT',material:'Material',finish:'Finish',dimensions:'Dimensions',inquire:'Inquire about this piece',availability:'For availability and custom requests, contact the studio.',discover:'DISCOVER MORE',viewAll:'Explore all objects',photo:'View photograph',basin:'basin',
+ aboutIntro:'From rounded silhouettes to subtle surface textures, the work explores how a practical object can become a distinctive part of an interior.',aboutIdea:'A SIMPLE IDEA',aboutStatement:'Texture, proportion,',aboutStatementEm:'and a sense of place.',startConversation:'Start a conversation',
+ contactEyebrow:'CONTACT THE STUDIO',emailTag:'EMAIL',socialTag:'SOCIAL',name:'YOUR NAME',namePlaceholder:'Name',email:'EMAIL ADDRESS',subject:'SUBJECT',productInquiry:'Product inquiry',customProject:'Custom project',generalQuestion:'General question',yourMessage:'YOUR MESSAGE',messagePlaceholder:"Tell us about your project or the piece you're interested in…",send:'Send inquiry',privacy:'Your information will only be used to respond to your inquiry.',regarding:'Regarding',honeypot:"Don't fill this out", 
+ thanksTag:'MESSAGE RECEIVED',thanksTitle:'Thank you for reaching out.',thanksBody:"We've received your inquiry. The studio will respond using the contact details you provided.",returnHome:'Return home',notFound:'Page not found',notFoundBody:'Discover the collection or return to the homepage.',viewCollection:'View collection',
+ pageCollectionDesc:'Explore concrete basins and sculptural objects by Nicolas Khobelia.',pageAboutDesc:"The craft and perspective behind Nicolas Khobelia's concrete objects.",pageContactDesc:'Contact Nicolas Khobelia about concrete pieces and project inquiries.',brandDescriptor:'Concrete Objects & Basins',
+ category:{Round:'Round',Oval:'Oval',Rectangular:'Rectangular',Custom:'Custom',Other:'Other'}
+}
+} as const;
+export function t(lang:Language) { return ui[lang]; }
+export const ogLocales:Record<Language,string> = { ka:'ka_GE',ru:'ru_RU',en:'en_US' };

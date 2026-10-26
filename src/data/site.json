@@ -1,20 +1,72 @@
 {
   "brand": "Nicolas Khobelia",
-  "strapline": "HAND-FINISHED OBJECTS",
-  "heroTitle": "Stone in everyday spaces.",
-  "heroSubtitle": "Considered forms, natural textures and the quiet beauty of concrete.",
+  "strapline": {
+    "ka": "ხელით დამუშავებული ნაკეთობები",
+    "ru": "ИЗДЕЛИЯ РУЧНОЙ РАБОТЫ",
+    "en": "HAND-FINISHED OBJECTS"
+  },
+  "heroTitle": {
+    "ka": "ქვა ყოველდღიურ სივრცეში.",
+    "ru": "Камень в повседневном пространстве.",
+    "en": "Stone in everyday spaces."
+  },
+  "heroSubtitle": {
+    "ka": "დახვეწილი ფორმები, ბუნებრივი ფაქტურები და ბეტონის მშვიდი სილამაზე.",
+    "ru": "Продуманные формы, природные фактуры и сдержанная красота бетона.",
+    "en": "Considered forms, natural textures and the quiet beauty of concrete."
+  },
   "heroImage": "/images/products/round-basin.jpg",
-  "introEyebrow": "THE STUDIO",
-  "introTitle": "Built to be noticed. Made to belong.",
-  "introDescription": "A collection of sculptural concrete washbasins designed to bring texture, simplicity and character into contemporary interiors.",
-  "worksEyebrow": "SELECTED OBJECTS",
-  "worksTitle": "Explore the collection",
-  "aboutEyebrow": "ABOUT NICOLAS",
-  "aboutTitle": "Form follows feeling.",
-  "aboutDescription": "Nicolas Khobelia creates minimal concrete pieces with an appreciation for natural textures and uncomplicated forms. Explore the collection or get in touch to discuss a specific piece.",
+  "introEyebrow": {
+    "ka": "სახელოსნო",
+    "ru": "МАСТЕРСКАЯ",
+    "en": "THE STUDIO"
+  },
+  "introTitle": {
+    "ka": "შექმნილია ყურადღების მისაქცევად. სივრცესთან შესახამებლად.",
+    "ru": "Созданы привлекать взгляд. Призваны стать частью пространства.",
+    "en": "Built to be noticed. Made to belong."
+  },
+  "introDescription": {
+    "ka": "სკულპტურული ბეტონის ხელსაბანების კოლექცია, რომელიც თანამედროვე ინტერიერს ფაქტურას, სიმარტივესა და ხასიათს მატებს.",
+    "ru": "Коллекция скульптурных раковин из бетона, придающих современному интерьеру фактуру, простоту и характер.",
+    "en": "A collection of sculptural concrete washbasins designed to bring texture, simplicity and character into contemporary interiors."
+  },
+  "worksEyebrow": {
+    "ka": "რჩეული ნაკეთობები",
+    "ru": "ИЗБРАННЫЕ ИЗДЕЛИЯ",
+    "en": "SELECTED OBJECTS"
+  },
+  "worksTitle": {
+    "ka": "აღმოაჩინეთ კოლექცია",
+    "ru": "Посмотреть коллекцию",
+    "en": "Explore the collection"
+  },
+  "aboutEyebrow": {
+    "ka": "ნიკოლასის შესახებ",
+    "ru": "О НИКОЛАСЕ",
+    "en": "ABOUT NICOLAS"
+  },
+  "aboutTitle": {
+    "ka": "ფორმა შეგრძნებას მიჰყვება.",
+    "ru": "Форма рождается из ощущения.",
+    "en": "Form follows feeling."
+  },
+  "aboutDescription": {
+    "ka": "ნიკოლას ხობელია ქმნის მინიმალისტურ ბეტონის ნაკეთობებს, რომლებშიც ბუნებრივი ფაქტურებისა და მარტივი ფორმების სიყვარული იგრძნობა. დაათვალიერეთ კოლექცია ან დაგვიკავშირდით სასურველი ნივთის განსახილველად.",
+    "ru": "Николас Хобелия создаёт лаконичные изделия из бетона, вдохновляясь природными фактурами и простыми формами. Познакомьтесь с коллекцией или свяжитесь с нами, чтобы обсудить понравившееся изделие.",
+    "en": "Nicolas Khobelia creates minimal concrete pieces with an appreciation for natural textures and uncomplicated forms. Explore the collection or get in touch to discuss a specific piece."
+  },
   "aboutImage": "/images/products/oval-basin.jpg",
-  "contactTitle": "Let's make something lasting.",
-  "contactDescription": "Interested in a piece or planning a project? Send an inquiry with a few details and we'll get back to you.",
+  "contactTitle": {
+    "ka": "შევქმნათ რაღაც გამორჩეული და გამძლე.",
+    "ru": "Создадим нечто долговечное.",
+    "en": "Let's make something lasting."
+  },
+  "contactDescription": {
+    "ka": "გაინტერესებთ კონკრეტული ნივთი ან გეგმავთ პროექტს? მოგვწერეთ თქვენი სურვილების შესახებ და დაგიკავშირდებით.",
+    "ru": "Вас заинтересовало изделие или вы планируете проект? Напишите нам немного о своих пожеланиях, и мы ответим.",
+    "en": "Interested in a piece or planning a project? Send an inquiry with a few details and we'll get back to you."
+  },
   "instagramUrl": "",
   "contactEmail": ""
 }

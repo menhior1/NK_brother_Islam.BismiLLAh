@@ -267,3 +267,24 @@ img { display: block; max-width: 100%; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+
+/* Language selector: deliberately quieter than primary navigation. */
+.language-switcher { display:flex; align-items:center; gap:10px; padding-left:18px; border-left:1px solid currentColor; }
+.primary-nav .lang-link { font-family:var(--sans); font-size:.7rem; font-weight:600; letter-spacing:.04em; opacity:.65; padding:9px 1px; text-decoration:none; }
+.primary-nav .lang-link::after { display:none; }
+.primary-nav .lang-link[aria-current="true"] { opacity:1; text-decoration:underline; text-underline-offset:5px; }
+.primary-nav .lang-link:hover { opacity:1; }
+.lang-ka { --display: 'Noto Serif Georgian','Sylfaen',Georgia,serif; --sans:'Noto Sans Georgian','DejaVu Sans',Arial,sans-serif; }
+.lang-ka .display-title,.lang-ka .hero h1 { letter-spacing:-.02em; line-height:1.2; }
+.lang-ka .brand-name { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; }
+@media (max-width:760px) {
+  .language-switcher { margin-top:15px; padding:14px 0 0; gap:23px; border-left:0; border-top:1px solid var(--edge); width:100%; max-width:350px; }
+  .primary-nav .lang-link { font-family:var(--sans);font-size:1rem;letter-spacing:.05em; }
+  .primary-nav a.lang-link { padding:8px 3px; }
+  .lang-ka .primary-nav > a { font-size:clamp(2rem,6vw,3.4rem); }
+}
+@media (max-width:480px) {
+  .lang-ka .hero h1 { font-size:clamp(3rem,10vw,4.5rem); }
+  .lang-ka .display-title { font-size:clamp(2.5rem,9vw,4rem); }
+}
