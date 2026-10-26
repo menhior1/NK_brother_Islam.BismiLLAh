@@ -1,0 +1,131 @@
+# Pages CMS reads this file at repository root: https://pagescms.org
+media:
+  input: public/images/uploads
+  output: /images/uploads
+  rename: safe
+  categories: [image]
+
+content:
+  - name: products
+    label: Products
+    type: collection
+    path: src/data/products
+    format: json
+    filename: "{primary}.json"
+    view:
+      primary: title
+      fields: [title, category, published, featured, order]
+      sort: [order, title]
+      search: [title, category]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Product name
+        type: string
+        required: true
+      - name: category
+        label: Shape / category
+        type: select
+        options:
+          values: [Round, Oval, Rectangular, Custom, Other]
+        required: true
+      - name: description
+        label: Description
+        type: text
+      - name: material
+        label: Material
+        type: string
+      - name: finish
+        label: Finish
+        type: string
+      - name: dimensions
+        label: Dimensions (optional)
+        type: string
+      - name: coverImage
+        label: Cover photograph
+        type: image
+        required: true
+      - name: gallery
+        label: Additional photographs
+        type: image
+        options:
+          multiple:
+            max: 10
+          unique: true
+      - name: alt
+        label: Photograph description for accessibility
+        type: string
+      - name: featured
+        label: Feature on homepage
+        type: boolean
+      - name: published
+        label: Publicly visible
+        type: boolean
+        description: "Turn off to hide this product from the published website."
+      - name: order
+        label: Sort order (lower shows first)
+        type: number
+
+  - name: site
+    label: Homepage and studio
+    type: file
+    path: src/data/site.json
+    format: json
+    fields:
+      - name: brand
+        label: Studio name
+        type: string
+        required: true
+      - name: strapline
+        label: Small tagline
+        type: string
+      - name: heroTitle
+        label: Homepage headline
+        type: string
+      - name: heroSubtitle
+        label: Homepage introduction
+        type: text
+      - name: heroImage
+        label: Homepage photograph
+        type: image
+      - name: introEyebrow
+        label: Studio section label
+        type: string
+      - name: introTitle
+        label: Studio introduction headline
+        type: string
+      - name: introDescription
+        label: Studio introduction text
+        type: text
+      - name: worksEyebrow
+        label: Collection section label
+        type: string
+      - name: worksTitle
+        label: Collection headline
+        type: string
+      - name: aboutEyebrow
+        label: About section label
+        type: string
+      - name: aboutTitle
+        label: About headline
+        type: string
+      - name: aboutDescription
+        label: About text
+        type: text
+      - name: aboutImage
+        label: About photograph
+        type: image
+      - name: contactTitle
+        label: Contact headline
+        type: string
+      - name: contactDescription
+        label: Contact introduction
+        type: text
+      - name: instagramUrl
+        label: Instagram URL (optional)
+        type: string
+      - name: contactEmail
+        label: Public email (optional)
+        type: string

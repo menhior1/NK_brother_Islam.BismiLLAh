@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { publishedProducts } from '../../lib/products';
+import type { CollectionEntry } from 'astro:content';
+export async function getStaticPaths() {
+  const products = await publishedProducts();
+  return products.map((product) => ({ params: { slug: product.id }, props: { product } }));
+}
+const { product } = Astro.props as { product: CollectionEntry<'products'> };
+const { data } = product;
+const detailRows = [['Material', data.material], ['Finish', data.finish], ['Dimensions', data.dimensions]].filter(([, v]) => Boolean(v));
+---
+<Layout title={data.title} description={data.description} image={data.coverImage}>
+  <section class="detail-section"><div class="container">
+    <a class="back-link" href="/works/"><span aria-hidden="true">←</span> Back to collection</a>
+    <div class="detail-grid">
+      <div class="detail-media"><ResponsiveImage className="detail-main-image" src={data.coverImage} alt={data.alt || data.title} sizes="(max-width: 800px) 100vw, 62vw" loading="eager" fetchpriority="high" />{data.gallery.length > 0 && <div class="detail-thumbnails">{data.gallery.map((photo,index) => <button class="detail-thumb" type="button" data-full={photo} aria-label={`View photograph ${index + 2}`}><ResponsiveImage src={photo} alt={`${data.title} — view ${index + 2}`} sizes="140px" /></button>)}</div>}</div>
+      <div class="detail-copy"><p class="eyebrow eyebrow--dark">OBJECT / {data.category.toUpperCase()}</p><h1 class="display-title">{data.title}</h1><p class="detail-description">{data.description}</p>{detailRows.length > 0 && <dl class="spec-list">{detailRows.map(([label, value]) => <div><dt>{label}</dt><dd>{value}</dd></div>)}</dl>}<a class="button button--dark" href={`/contact/?product=${encodeURIComponent(data.title)}`}>Inquire about this piece <span aria-hidden="true">↗</span></a><p class="detail-footnote">For availability and custom requests, contact the studio.</p></div>
+    </div>
+  </div></section>
+  <section class="detail-bottom"><div class="container"><p class="eyebrow eyebrow--dark">DISCOVER MORE</p><a href="/works/" class="display-title">Explore all objects <span aria-hidden="true">↗</span></a></div></section>
+<script>
+  // Thumbnails swap the main photograph without a page reload.
+  document.querySelectorAll<HTMLButtonElement>('.detail-thumb').forEach(button => {
+    button.addEventListener('click', () => {
+      const src = button.dataset.full;
+      const picture = document.querySelector('.detail-main-image');
+      const img = picture?.querySelector('img');
+      if (!src || !img) return;
+      picture?.querySelector('source')?.remove();
+      img.src = src;
+      img.alt = button.querySelector('img')?.alt || img.alt;
+      document.querySelectorAll('.detail-thumb').forEach(el => el.classList.toggle('active', el === button));
+    });
+  });
+</script>
+</Layout>

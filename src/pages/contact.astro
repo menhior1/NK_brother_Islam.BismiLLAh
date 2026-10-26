@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import site from '../data/site.json';
+---
+<Layout title="Contact" description="Contact Nicolas Khobelia about concrete basins, pieces and project inquiries.">
+  <section class="contact-section"><div class="container contact-grid"><div class="contact-intro"><p class="eyebrow eyebrow--dark">CONTACT THE STUDIO</p><h1 class="display-title">{site.contactTitle}</h1><p class="lead">{site.contactDescription}</p>{site.contactEmail && <p class="contact-email"><span>EMAIL</span><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>}{site.instagramUrl && <p class="contact-email"><span>SOCIAL</span><a href={site.instagramUrl} rel="noopener noreferrer" target="_blank">Instagram ↗</a></p>}</div>
+    <form class="inquiry-form" name="inquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="inquiry" />
+      <p class="honeypot"><label>Don't fill this out: <input name="bot-field" /></label></p>
+      <div class="form-row"><label for="name">YOUR NAME <span aria-hidden="true">*</span></label><input type="text" id="name" name="name" placeholder="Name" autocomplete="name" required minlength="2" /></div>
+      <div class="form-row"><label for="email">EMAIL ADDRESS <span aria-hidden="true">*</span></label><input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required /></div>
+      <div class="form-row"><label for="subject">SUBJECT</label><select id="subject" name="subject"><option value="Product inquiry">Product inquiry</option><option value="Custom project">Custom project</option><option value="General question">General question</option></select></div>
+      <input type="hidden" name="product" id="product" value="" />
+      <p id="product-note" class="product-note" hidden></p>
+      <div class="form-row"><label for="message">YOUR MESSAGE <span aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder="Tell us about your project or the piece you're interested in…" rows="6" required minlength="10"></textarea></div>
+      <button class="button button--dark" type="submit">Send inquiry <span aria-hidden="true">↗</span></button>
+      <p class="form-privacy">Your information will only be used to respond to your inquiry.</p>
+    </form>
+  </div></section>
+<script>
+  const product = new URLSearchParams(window.location.search).get('product');
+  const productInput = document.querySelector<HTMLInputElement>('#product');
+  const note = document.querySelector<HTMLElement>('#product-note');
+  if (product && productInput && note) {
+    productInput.value = product;
+    note.textContent = `Regarding: ${product}`;
+    note.hidden = false;
+  }
+</script>
+</Layout>

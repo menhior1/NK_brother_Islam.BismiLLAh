@@ -1,0 +1,14 @@
+---
+import site from '../data/site.json';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-top">
+    <a class="footer-brand" href="/">Nicolas Khobelia<span>Objects with character.</span></a>
+    <div class="footer-links" aria-label="Footer navigation">
+      <a href="/works/">Collection</a><a href="/about/">Studio</a><a href="/contact/">Contact</a>
+      {site.instagramUrl && <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">Instagram ↗</a>}
+    </div>
+  </div>
+  <div class="container footer-bottom"><span>© {year} Nicolas Khobelia</span><span>Designed with restraint.</span></div>
+</footer>

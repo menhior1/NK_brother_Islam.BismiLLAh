@@ -1,0 +1,35 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import site from '../data/site.json';
+interface Props { title?: string; description?: string; overlayHeader?: boolean; image?: string; }
+const { title = '', description = site.heroSubtitle, overlayHeader = false, image = site.heroImage } = Astro.props;
+const pageTitle = title ? `${title} — ${site.brand}` : `${site.brand} — Concrete Objects & Basins`;
+const canonical = new URL(Astro.url.pathname, Astro.site || Astro.url).toString();
+const imageUrl = new URL(image, Astro.site || Astro.url).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#ecebe5" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <Header overlay={overlayHeader} />
+    <main id="main-content"><slot /></main>
+    <Footer />
+  </body>
+</html>

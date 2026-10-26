@@ -1,0 +1,11 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ResponsiveImage from './ResponsiveImage.astro';
+interface Props { product: CollectionEntry<'products'>; index?: number; }
+const { product, index = 0 } = Astro.props;
+const { data, id } = product;
+---
+<a class:list={['product-card', { 'product-card--offset': index % 2 === 1 }]} href={`/works/${id}/`} data-category={data.category}>
+  <div class="product-card__photo"><ResponsiveImage src={data.coverImage} alt={data.alt || data.title} sizes="(max-width: 700px) 100vw, 47vw" /></div>
+  <div class="product-card__meta"><div><h3>{data.title}</h3><p>{data.category} basin <span aria-hidden="true">/</span> {data.material || 'Concrete'}</p></div><span class="card-arrow" aria-hidden="true">↗</span></div>
+</a>

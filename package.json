@@ -1,0 +1,24 @@
+{
+  "name": "nicolas-khobelia-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "start": "astro dev",
+    "prebuild": "node scripts/optimize-images.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:content": "node scripts/validate-content.mjs"
+  },
+  "dependencies": {
+    "astro": "^6.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "sharp": "^0.34.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  },
+  "engines": {"node": ">=22.23.4"}
+}
