@@ -1,14 +1,39 @@
 {
-  "title": "Round Concrete Basin",
+  "title": {
+    "ka": "მრგვალი ბეტონის ხელსაბანი",
+    "ru": "Круглая бетонная раковина",
+    "en": "Round Concrete Basin"
+  },
   "category": "Round",
-  "description": "A quietly sculptural round countertop basin with a softly textured concrete surface. Its simple silhouette brings a tactile quality to contemporary bathroom spaces.",
-  "material": "Concrete",
-  "finish": "Light natural finish",
-  "dimensions": "",
+  "description": {
+    "ka": "სკულპტურული ფორმის მრგვალი ზედაპირზე დასადგმელი ხელსაბანი, ბეტონის ნაზი ფაქტურით. მისი სადა სილუეტი თანამედროვე სააბაზანოს სივრცეს განსაკუთრებულ ხასიათს სძენს.",
+    "ru": "Круглая накладная раковина со скульптурным силуэтом и мягкой фактурой бетона. Простая форма придаёт современному интерьеру ванной комнаты выразительность.",
+    "en": "A quietly sculptural round countertop basin with a softly textured concrete surface. Its simple silhouette brings a tactile quality to contemporary bathroom spaces."
+  },
+  "material": {
+    "ka": "ბეტონი",
+    "ru": "Бетон",
+    "en": "Concrete"
+  },
+  "finish": {
+    "ka": "ღია ბუნებრივი ზედაპირი",
+    "ru": "Светлая натуральная отделка",
+    "en": "Light natural finish"
+  },
+  "dimensions": {
+    "ka": "",
+    "ru": "",
+    "en": ""
+  },
   "coverImage": "/images/products/round-basin.jpg",
   "gallery": [],
   "featured": true,
   "published": true,
   "order": 1,
-  "alt": "Round, light-coloured concrete countertop basin beside a black tap"
+  "alt": {
+    "ka": "ღია ფერის მრგვალი ბეტონის ხელსაბანი შავი ონკანის გვერდით",
+    "ru": "Круглая светлая бетонная раковина рядом с чёрным смесителем",
+    "en": "Round, light-coloured concrete countertop basin beside a black tap"
+  },
+  "slug": "round-concrete-basin"
 }

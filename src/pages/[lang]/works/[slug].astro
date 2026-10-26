@@ -1,0 +1,13 @@
+---
+import DetailPage from '../../../components/pages/DetailPage.astro';
+import {publishedProducts} from '../../../lib/products';
+import type {Language} from '../../../lib/i18n';
+import type {CollectionEntry} from 'astro:content';
+export async function getStaticPaths(){
+ const products=await publishedProducts();
+ return ['ru','en'].flatMap(lang=>products.map(product=>({params:{lang,slug:product.id},props:{product}})));
+}
+const lang=Astro.params.lang as Language;
+const {product}=Astro.props as {product:CollectionEntry<'products'>};
+---
+<DetailPage lang={lang} product={product} />

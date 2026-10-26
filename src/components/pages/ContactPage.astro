@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import site from '../../data/site.json';
+import {localized,route,t,type Language} from '../../lib/i18n';
+const {lang}=Astro.props as {lang:Language};
+const words=t(lang);
+---
+<Layout lang={lang} title={words.contact} description={words.pageContactDesc}>
+  <section class="contact-section"><div class="container contact-grid"><div class="contact-intro"><p class="eyebrow eyebrow--dark">{words.contactEyebrow}</p><h1 class="display-title">{localized(site.contactTitle,lang)}</h1><p class="lead">{localized(site.contactDescription,lang)}</p>{site.contactEmail&&<p class="contact-email"><span>{words.emailTag}</span><a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>}{site.instagramUrl&&<p class="contact-email"><span>{words.socialTag}</span><a href={site.instagramUrl} rel="noopener noreferrer" target="_blank">Instagram ↗</a></p>}</div>
+    <form class="inquiry-form" name="inquiry" method="POST" action={route(lang,'/thank-you/')} data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="inquiry" />
+      <input type="hidden" name="language" value={lang} />
+      <p class="honeypot"><label>{words.honeypot}: <input name="bot-field" /></label></p>
+      <div class="form-row"><label for="name">{words.name} <span aria-hidden="true">*</span></label><input type="text" id="name" name="name" placeholder={words.namePlaceholder} autocomplete="name" required minlength="2" /></div>
+      <div class="form-row"><label for="email">{words.email} <span aria-hidden="true">*</span></label><input type="email" id="email" name="email" placeholder="Email" autocomplete="email" required /></div>
+      <div class="form-row"><label for="subject">{words.subject}</label><select id="subject" name="subject"><option value="Product inquiry">{words.productInquiry}</option><option value="Custom project">{words.customProject}</option><option value="General question">{words.generalQuestion}</option></select></div>
+      <input type="hidden" name="product" id="product" value="" />
+      <p id="product-note" class="product-note" hidden data-prefix={words.regarding}></p>
+      <div class="form-row"><label for="message">{words.yourMessage} <span aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder={words.messagePlaceholder} rows="6" required minlength="10"></textarea></div>
+      <button class="button button--dark" type="submit">{words.send} <span aria-hidden="true">↗</span></button>
+      <p class="form-privacy">{words.privacy}</p>
+    </form>
+  </div></section>
+  <script>
+    const product=new URLSearchParams(window.location.search).get('product');
+    const productInput=document.querySelector<HTMLInputElement>('#product');
+    const note=document.querySelector<HTMLElement>('#product-note');
+    if(product && productInput && note){productInput.value=product;note.textContent=`${note.dataset.prefix||'Regarding'}: ${product}`;note.hidden=false;}
+  </script>
+</Layout>

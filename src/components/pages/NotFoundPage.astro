@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {route,t,type Language} from '../../lib/i18n';
+const {lang}=Astro.props as {lang:Language};const words=t(lang);
+---
+<Layout lang={lang} title={words.notFound}>
+  <section class="thank-you section-pad"><div class="container"><p class="eyebrow eyebrow--dark">404 / {words.notFound}</p><h1 class="display-title">{words.notFound}</h1><p>{words.notFoundBody}</p><a class="button button--dark" href={route(lang,'/works/')}>{words.viewCollection} <span aria-hidden="true">↗</span></a></div></section>
+</Layout>

@@ -1,0 +1,7 @@
+---
+import HomePage from '../../components/pages/HomePage.astro';
+import type {Language} from '../../lib/i18n';
+export function getStaticPaths(){return ['ru','en'].map(lang=>({params:{lang}}));}
+const lang=Astro.params.lang as Language;
+---
+<HomePage lang={lang} />

@@ -1,14 +1,39 @@
 {
-  "title": "Oval Concrete Basin",
+  "title": {
+    "ka": "ოვალური ბეტონის ხელსაბანი",
+    "ru": "Овальная бетонная раковина",
+    "en": "Oval Concrete Basin"
+  },
   "category": "Oval",
-  "description": "An oval countertop basin with clean proportions and a subtle stone-like texture. Its understated form pairs naturally with modern fittings and muted interiors.",
-  "material": "Concrete",
-  "finish": "Light natural finish",
-  "dimensions": "",
+  "description": {
+    "ka": "ოვალური ზედაპირზე დასადგმელი ხელსაბანი დახვეწილი პროპორციებითა და ქვის მსგავსი ნაზი ფაქტურით. მისი თავშეკავებული ფორმა ბუნებრივად ერწყმის თანამედროვე აქსესუარებსა და მშვიდ ინტერიერს.",
+    "ru": "Овальная накладная раковина с выверенными пропорциями и деликатной фактурой, напоминающей камень. Сдержанная форма гармонично сочетается с современной сантехникой и спокойными интерьерами.",
+    "en": "An oval countertop basin with clean proportions and a subtle stone-like texture. Its understated form pairs naturally with modern fittings and muted interiors."
+  },
+  "material": {
+    "ka": "ბეტონი",
+    "ru": "Бетон",
+    "en": "Concrete"
+  },
+  "finish": {
+    "ka": "ღია ბუნებრივი ზედაპირი",
+    "ru": "Светлая натуральная отделка",
+    "en": "Light natural finish"
+  },
+  "dimensions": {
+    "ka": "",
+    "ru": "",
+    "en": ""
+  },
   "coverImage": "/images/products/oval-basin.jpg",
   "gallery": [],
   "featured": true,
   "published": true,
   "order": 2,
-  "alt": "Light-coloured oval concrete countertop washbasin with wall-mounted black faucet"
+  "alt": {
+    "ka": "ღია ფერის ოვალური ბეტონის ხელსაბანი კედელზე დამონტაჟებული შავი ონკანით",
+    "ru": "Светлая овальная бетонная раковина с настенным чёрным смесителем",
+    "en": "Light-coloured oval concrete countertop washbasin with wall-mounted black faucet"
+  },
+  "slug": "oval-concrete-basin"
 }

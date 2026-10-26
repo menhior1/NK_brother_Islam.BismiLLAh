@@ -1,11 +1,13 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import ResponsiveImage from './ResponsiveImage.astro';
-interface Props { product: CollectionEntry<'products'>; index?: number; }
-const { product, index = 0 } = Astro.props;
-const { data, id } = product;
+import {localized, route, t, type Language} from '../lib/i18n';
+interface Props { product:CollectionEntry<'products'>; lang:Language; index?:number }
+const {product,lang,index=0}=Astro.props;
+const {data,id}=product;
+const words=t(lang);
 ---
-<a class:list={['product-card', { 'product-card--offset': index % 2 === 1 }]} href={`/works/${id}/`} data-category={data.category}>
-  <div class="product-card__photo"><ResponsiveImage src={data.coverImage} alt={data.alt || data.title} sizes="(max-width: 700px) 100vw, 47vw" /></div>
-  <div class="product-card__meta"><div><h3>{data.title}</h3><p>{data.category} basin <span aria-hidden="true">/</span> {data.material || 'Concrete'}</p></div><span class="card-arrow" aria-hidden="true">↗</span></div>
+<a class:list={['product-card',{'product-card--offset':index%2===1}]} href={route(lang,`/works/${id}/`)} data-category={data.category}>
+  <div class="product-card__photo"><ResponsiveImage src={data.coverImage} alt={localized(data.alt,lang) || localized(data.title,lang)} sizes="(max-width: 700px) 100vw, 47vw" /></div>
+  <div class="product-card__meta"><div><h3>{localized(data.title,lang)}</h3><p>{words.category[data.category]} {words.basin} <span aria-hidden="true">/</span> {localized(data.material,lang)||words.category.Other}</p></div><span class="card-arrow" aria-hidden="true">↗</span></div>
 </a>

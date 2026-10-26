@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../ProductCard.astro';
+import {publishedProducts} from '../../lib/products';
+import {t,type Language} from '../../lib/i18n';
+const {lang}=Astro.props as {lang:Language};
+const words=t(lang);
+const products=await publishedProducts();
+const categories=['All',...new Set(products.map(p=>p.data.category))];
+---
+<Layout lang={lang} title={words.collectionTitle} description={words.pageCollectionDesc}>
+  <section class="page-hero page-hero--collection"><div class="container"><p class="eyebrow eyebrow--dark">{words.collectionEyebrow}</p><div class="page-hero__row"><h1 class="display-title">{words.collectionTitle}<span class="heading-period">.</span></h1><p>{words.collectionIntro}</p></div></div></section>
+  <section class="collection-section"><div class="container">
+    <div class="collection-toolbar"><div class="filters" role="group" aria-label={words.filterLabel}>{categories.map((category,index)=><button type="button" class:list={['filter-button',{'is-active':index===0}]} data-filter={category} aria-pressed={index===0}>{category==='All'?words.all:words.category[category as keyof typeof words.category]}</button>)}</div><span class="collection-count" data-label={words.objects}>{String(products.length).padStart(2,'0')} {words.objects}</span></div>
+    <div class="product-grid collection-grid" id="collection-grid">{products.map((product,index)=><ProductCard lang={lang} product={product} index={index} />)}</div>
+    <p class="filter-empty" hidden>{words.filterEmpty}</p>
+  </div></section>
+  <script>
+    const buttons=document.querySelectorAll<HTMLButtonElement>('.filter-button');
+    const cards=document.querySelectorAll<HTMLElement>('.collection-grid .product-card');
+    const count=document.querySelector<HTMLElement>('.collection-count');
+    const empty=document.querySelector<HTMLElement>('.filter-empty');
+    buttons.forEach(button=>button.addEventListener('click',()=>{
+      const category=button.dataset.filter;
+      let visible=0;
+      buttons.forEach(btn=>{const active=btn===button;btn.classList.toggle('is-active',active);btn.setAttribute('aria-pressed',String(active));});
+      cards.forEach(card=>{const show=category==='All'||card.dataset.category===category;card.hidden=!show;if(show)visible++;});
+      if(count)count.textContent=`${String(visible).padStart(2,'0')} ${count.dataset.label||''}`;
+      if(empty)empty.hidden=visible!==0;
+    }));
+  </script>
+</Layout>
