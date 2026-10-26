@@ -13,9 +13,10 @@
   },
   "dependencies": {
     "astro": "^6.0.0",
-    "@tailwindcss/vite": "^4.0.0",
     "tailwindcss": "^4.0.0",
-    "sharp": "^0.34.0"
+    "sharp": "^0.34.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "postcss": "^8.5.0"
   },
   "devDependencies": {
     "typescript": "^5.8.0"
@@ -23,5 +24,7 @@
   "overrides": {
     "vite": "^7"
   },
-  "engines": {"node": ">=22.23.4"}
+  "engines": {
+    "node": ">=22.23.4"
+  }
 }
