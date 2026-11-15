@@ -4,14 +4,38 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import site from '../data/site.json';
 import { alternateLangPath, languages, localized, localizedPath, ogLocales, t, type Language } from '../lib/i18n';
-interface Props { lang: Language; title?: string; description?: string; overlayHeader?: boolean; image?: string; }
-const { lang, title = '', description = localized(site.heroSubtitle,lang), overlayHeader = false, image = site.heroImage } = Astro.props;
-const words=t(lang);
+
+interface Props {
+  lang: Language;
+  title?: string;
+  description?: string;
+  overlayHeader?: boolean;
+  image?: string;
+  structuredData?: Record<string,unknown> | Record<string,unknown>[];
+}
+const {
+  lang, title = '', description = localized(site.heroSubtitle,lang),
+  overlayHeader = false, image = site.heroImage, structuredData = []
+} = Astro.props;
+const words = t(lang);
 const pageTitle = title ? `${title} — ${site.brand}` : `${site.brand} — ${words.brandDescriptor}`;
 const base = Astro.site || Astro.url;
 const path = alternateLangPath(Astro.url.pathname);
 const canonical = new URL(Astro.url.pathname, base).toString();
 const imageUrl = new URL(image,base).toString();
+const homeSchema = path === '/' ? {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.brand,
+  url: new URL('/',base).toString(),
+  description: words.homeSeoDescription,
+  telephone: [site.contactPhoneGeorgia,site.contactPhoneRussia].filter(Boolean),
+  knowsAbout: [words.brandDescriptor, words.basin]
+} : null;
+const jsonLd = [
+  ...(homeSchema ? [homeSchema] : []),
+  ...(Array.isArray(structuredData) ? structuredData : [structuredData])
+].filter(Boolean);
 ---
 <!doctype html>
 <html lang={lang} class={`lang-${lang}`}>
@@ -20,18 +44,26 @@ const imageUrl = new URL(image,base).toString();
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#ecebe5" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     {languages.map(l => <link rel="alternate" hreflang={l} href={new URL(localizedPath(path,l),base).toString()} />)}
     <link rel="alternate" hreflang="x-default" href={new URL(localizedPath(path,'ka'),base).toString()} />
     {lang==='ka' && <><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;600&family=Noto+Serif+Georgian:wght@400;500&display=swap" rel="stylesheet" /></>}
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brand} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocales[lang]} />
+    {languages.filter(l=>l!==lang).map(l => <meta property="og:locale:alternate" content={ogLocales[l]} />)}
     <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={pageTitle} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    {jsonLd.map(data => <script type="application/ld+json" is:inline set:html={JSON.stringify(data).replace(/</g,'\\u003c')} />)}
     <title>{pageTitle}</title>
   </head>
   <body>

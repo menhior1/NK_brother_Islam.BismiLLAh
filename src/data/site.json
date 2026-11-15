@@ -63,10 +63,11 @@
     "en": "Let's make something lasting."
   },
   "contactDescription": {
-    "ka": "გაინტერესებთ კონკრეტული ნივთი ან გეგმავთ პროექტს? მოგვწერეთ თქვენი სურვილების შესახებ და დაგიკავშირდებით.",
-    "ru": "Вас заинтересовало изделие или вы планируете проект? Напишите нам немного о своих пожеланиях, и мы ответим.",
-    "en": "Interested in a piece or planning a project? Send an inquiry with a few details and we'll get back to you."
+    "ka": "გაინტერესებთ კონკრეტული ნივთი ან გეგმავთ პროექტს? დაგვიკავშირდით ქვემოთ მითითებულ ნომრებზე, რათა განვიხილოთ დეტალები.",
+    "ru": "Вас заинтересовало изделие или вы планируете проект? Позвоните по одному из указанных номеров, чтобы обсудить детали.",
+    "en": "Interested in a piece or planning a project? Call either number below to discuss the details."
   },
   "instagramUrl": "",
-  "contactEmail": ""
+  "contactPhoneGeorgia": "+995551937757",
+  "contactPhoneRussia": "+79697936686"
 }

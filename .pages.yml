@@ -376,6 +376,11 @@ content:
   - name: instagramUrl
     label: Instagram URL (optional)
     type: string
-  - name: contactEmail
-    label: Public contact email (optional)
+  - name: contactPhoneGeorgia
+    label: Public contact number — Georgia (+995)
     type: string
+    required: true
+  - name: contactPhoneRussia
+    label: Public contact number — Russia (+7)
+    type: string
+    required: true
