@@ -11,6 +11,8 @@ const year=new Date().getFullYear();
     <div class="footer-links" aria-label={words.navigation}>
       <a href={route(lang,'/works/')}>{words.collection}</a><a href={route(lang,'/about/')}>{words.studio}</a><a href={route(lang,'/contact/')}>{words.contact}</a>
       {site.instagramUrl && <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">Instagram ↗</a>}
+      <a class="footer-phone" href={`tel:${site.contactPhoneGeorgia}`}>{site.contactPhoneGeorgia}</a>
+      <a class="footer-phone" href={`tel:${site.contactPhoneRussia}`}>{site.contactPhoneRussia}</a>
     </div>
   </div>
   <div class="container footer-bottom"><span>© {year} Nicolas Khobelia</span><span>{words.footerBottom}</span></div>

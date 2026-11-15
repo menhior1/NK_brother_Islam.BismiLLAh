@@ -163,28 +163,22 @@ img { display: block; max-width: 100%; }
 .about-statement .display-title { margin: 25px 0 0; font-size: clamp(3.2rem, 6vw, 7.5rem); }
 .about-statement .display-title em { color: #8d8c81; }
 
-/* Contact */
+/* Contact — telephone-only, no submission form */
 .contact-section { padding: clamp(75px, 9vw, 145px) 0 clamp(115px, 13vw, 200px); }
-.contact-grid { display: grid; grid-template-columns: .94fr 1.06fr; gap: clamp(55px, 11vw, 180px); }
-.contact-intro .display-title { font-size: clamp(3.7rem, 5.8vw, 7rem); margin: 32px 0; }
-.contact-intro .lead { line-height: 1.9; color: var(--ink-soft); max-width: 440px; font-size: 1rem; }
-.contact-email { display: flex; flex-direction: column; gap: 12px; margin-top: 50px; }
-.contact-email span { font-size: .65rem; letter-spacing: .2em; color: var(--ink-soft); }
-.contact-email a { font-family: var(--display); font-size: 1.4rem; }
-.inquiry-form { padding-top: 20px; }
-.form-row { display: flex; flex-direction: column; margin-bottom: 28px; }
-.form-row label { font-size: .64rem; font-weight: 600; letter-spacing: .13em; margin-bottom: 15px; }
-.form-row input, .form-row select, .form-row textarea { width: 100%; border: none; border-bottom: 1px solid #bdbcb3; background: transparent; border-radius: 0; padding: 11px 0 17px; outline: none; color: var(--ink); font-size: .93rem; }
-.form-row textarea { resize: vertical; min-height: 135px; }
-.form-row input::placeholder, .form-row textarea::placeholder { color: #96978f; }
-.form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-bottom-color: #2b2d2a; }
-.inquiry-form .button { width: 100%; }
-.form-privacy { font-size: .74rem; color: var(--ink-soft); margin-top: 20px; }
-.product-note { padding: 12px 14px; background: #dfded6; font-size: .8rem; margin: 0 0 23px; }
-.honeypot { position: absolute; height: 1px; width: 1px; overflow: hidden; clip-path: inset(100%); }
-.thank-you { min-height: 68vh; display: flex; align-items: center; }
-.thank-you .display-title { max-width: 950px; margin: 25px 0; }
-.thank-you p:not(.eyebrow) { color: var(--ink-soft); font-size: 1rem; line-height: 1.7; margin-bottom: 28px; }
+.contact-grid { display:grid; grid-template-columns:.94fr 1.06fr; gap:clamp(55px, 11vw, 180px); align-items:start; }
+.contact-intro .display-title { font-size:clamp(3.4rem, 5.8vw, 7rem); margin:32px 0; }
+.contact-intro .lead { line-height:1.9; color:var(--ink-soft); max-width:460px; font-size:1rem; }
+.contact-phones { display:flex; flex-direction:column; gap:18px; padding-top:26px; }
+.contact-phones > .eyebrow { margin-bottom:11px; }
+.contact-phone { display:flex; flex-direction:column; gap:12px; padding:clamp(25px, 3vw, 45px); border:1px solid var(--edge); background:#eae8e1; transition:background .2s, transform .2s; }
+.contact-phone:hover { background:#e0ddd4; transform:translateY(-2px); }
+.contact-phone__region { font-size:.68rem; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-soft); }
+.contact-phone strong { font-family:var(--display); font-size:clamp(1.55rem, 2.6vw, 2.8rem); font-weight:400; letter-spacing:-.03em; overflow-wrap:anywhere; }
+.contact-phone__action { display:flex; align-items:center; justify-content:space-between; margin-top:8px; font-size:.7rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; }
+.contact-phone__action span { font-size:1.4rem; font-weight:400; }
+.contact-phones__note { font-size:.85rem; line-height:1.7; color:var(--ink-soft); }
+.product-note { padding:12px 14px; background:#dfded6; font-size:.83rem; margin-top:26px; }
+@media (max-width:480px) { .contact-phone strong { font-size:clamp(1.4rem,7vw,2rem); } }
 
 /* Footer */
 .site-footer { padding-top: clamp(65px, 7vw, 112px); background: #e8e6df; }
@@ -194,6 +188,7 @@ img { display: block; max-width: 100%; }
 .footer-links { display: grid; grid-template-columns: repeat(2, auto); gap: 15px 45px; }
 .footer-links a { font-size: .78rem; }
 .footer-links a:hover { text-decoration: underline; }
+.footer-links a.footer-phone { font-weight:600; font-size:.85rem; white-space:nowrap; }
 .footer-bottom { border-top: 1px solid #cfcec7; padding: 25px 0; display: flex; justify-content: space-between; gap: 15px; color: #77776f; font-size: .72rem; }
 
 @media (max-width: 950px) {
