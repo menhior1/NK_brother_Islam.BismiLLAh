@@ -11,7 +11,7 @@ const products=await publishedProducts();
 const featured=products.filter(p=>p.data.featured).slice(0,4);
 const visibleProducts=featured.length?featured:products.slice(0,4);
 ---
-<Layout lang={lang} overlayHeader={true}>
+<Layout lang={lang} title={words.homeSeoTitle} description={words.homeSeoDescription} overlayHeader={true}>
   <section class="hero" aria-labelledby="hero-title">
     <ResponsiveImage className="hero-image" src={site.heroImage} alt={localized(site.heroTitle,lang)} sizes="100vw" loading="eager" fetchpriority="high" />
     <div class="hero-shade"></div>

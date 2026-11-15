@@ -41,3 +41,11 @@ Netlify Forms receives a shared `inquiry` form with a language field; success pa
 ### Caveat
 
 The previously generated `offline-preview.html` (if present) is an older English-only design demonstration; it does not reflect this multilingual implementation. Review the actual Netlify preview for all three locales.
+
+
+## Contact and search visibility
+
+- Contact form replaced with editable phone numbers +995551937757 and +79697936686; all three languages display click-to-call links.
+- Each language has search-specific homepage title and description. Product pages emit factual Product structured data; homepages identify Nicolas via Person structured data. Canonical URLs, alternate language tags, sitemap and robots.txt are retained.
+- Enter the canonical production address in Netlify's PUBLIC_SITE_URL environment variable and redeploy. For the current Netlify URL, use https://nk-portf.netlify.app unless a custom domain is chosen.
+- Verify the public site in Google Search Console and submit /sitemap.xml. Indexing is at Google's discretion, never guaranteed.
